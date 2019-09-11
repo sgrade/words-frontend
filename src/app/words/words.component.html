@@ -1,0 +1,19 @@
+<h2>My Words</h2>
+<div>
+    <label>Word name:
+        <input #wordName />
+    </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(wordName.value); wordName.value=''">
+        add
+    </button>
+</div>
+<ul class="words">
+    <li *ngFor="let word of words">
+        <a routerLink="/detail/{{word.id}}">
+            <span class="badge">{{word.id}}</span> {{word.name}}
+        </a>
+        <button class="delete" title="delete word" 
+            (click)="delete(word)">x</button>
+    </li>
+</ul>
