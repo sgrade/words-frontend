@@ -91,18 +91,6 @@ export class WordService {
     );
   }
 
-  /* GET words whose name contains search term */
-  searchHeroes(term: string): Observable<Word[]> {
-    if (!term.trim()) {
-      // if not search term, return empty word array.
-      return of([]);
-    }
-    return this.http.get<Word[]>(`${this.wordsUrl}/?name=${term}`).pipe(
-      tap(_ => this.log(`found words matching "${term}"`)),
-      catchError(this.handleError<Word[]>('searchWords', []))
-    );
-  }
-
   /**
    * Handle Http operation that failed.
    * Let the app continue.

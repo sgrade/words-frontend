@@ -31,8 +31,8 @@ export class WordsComponent implements OnInit {
       });
   }
 
-  delete(hero: Word): void {
-    this.words = this.words.filter(h => h !== hero);
+  delete(word: Word): void {
+    this.words = this.words.filter(h => h !== word);
     this.wordService.deleteWord(word).subscribe();
   }
 
