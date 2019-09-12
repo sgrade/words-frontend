@@ -7,6 +7,10 @@
             <input [(ngModel)]="word.name" placeholder="name" />
         </label>
     </div>
+    <div>
+        <p>image:</p>
+        <img src="../../assets/images/{{word.imageurl}}" alt="{{word.name}}">
+    </div>
     <button (click)="goBack()">go back</button>
     <button (click)="save()">save</button>
 
