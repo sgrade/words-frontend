@@ -16,6 +16,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { WordSearchComponent } from './word-search/word-search.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WordModuleComponent } from './word-module/word-module.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     WordsComponent,
     WordDetailComponent,
     MessagesComponent,
-    WordSearchComponent
+    WordSearchComponent,
+    WordModuleComponent
   ],
   bootstrap: [AppComponent]
 })

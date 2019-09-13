@@ -1,54 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Word } from '../word';
 import { WordService } from '../word.service';
-import { trigger, transition, state, animate, style, AnimationEvent  } from '@angular/animations';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
-  animations: [
-    // animation triggers go here
-    trigger('rightWrong', [
-      // ...
-      state('undefined', style({
-      })),
-      state('right', style({
-        backgroundColor: 'green'
-      })),
-      state('wrong', style({
-        backgroundColor: 'red'
-      })),
-      transition('right => wrong', [
-        animate('1s')
-      ]),
-      transition('wrong => right', [
-        animate('0.5s')
-      ]),
-      transition('* => wrong', [
-        animate('1s')
-      ]),
-      transition('* => right', [
-        animate('0.5s')
-      ]),
-      transition('right <=> wrong', [
-        animate('0.5s')
-      ]),
-      transition('* => right', [
-        animate('1s',
-          style({ opacity: '*' }),
-        ),
-      ]),
-      transition('* => *', [
-        animate('1s')
-      ]),
-    ]),
-  ]
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  // Animations
-  isRight = undefined;
 
   words: Word[] = [];
   chosenWord: Word;
@@ -62,8 +21,6 @@ export class DashboardComponent implements OnInit {
   getWords(): void {
     this.wordService.getWords().subscribe(words => {
       this.words = this.shuffle(words.slice(0, 3));
-      // Shuffle elements
-
       this.chooseWord();
     });
   }
@@ -93,17 +50,4 @@ export class DashboardComponent implements OnInit {
     console.log('Please find: ' + this.chosenWord.name);
   }
 
-  // Check if we clicked on the answer
-  checkWord(word: Word): void {
-    if (!this.chosenWord) {
-      this.chooseWord();
-    }
-    console.log('Clicked on: ' + word.name);
-    if (this.chosenWord.id === word.id) {
-      this.isRight = true;
-      console.log('Right answer!');
-    } else {
-      this.isRight = false;
-    }
-  }
 }
