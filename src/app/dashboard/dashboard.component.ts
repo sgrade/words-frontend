@@ -9,30 +9,32 @@ import { trigger, transition, state, animate, style, AnimationEvent  } from '@an
   styleUrls: ['./dashboard.component.css'],
   animations: [
     // animation triggers go here
-    trigger('openClose', [
+    trigger('rightWrong', [
       // ...
-      state('open', style({
-        backgroundColor: 'yellow'
+      state('undefined', style({
       })),
-      state('closed', style({
+      state('right', style({
         backgroundColor: 'green'
       })),
-      transition('open => closed', [
+      state('wrong', style({
+        backgroundColor: 'red'
+      })),
+      transition('right => wrong', [
         animate('1s')
       ]),
-      transition('closed => open', [
+      transition('wrong => right', [
         animate('0.5s')
       ]),
-      transition('* => closed', [
+      transition('* => wrong', [
         animate('1s')
       ]),
-      transition('* => open', [
+      transition('* => right', [
         animate('0.5s')
       ]),
-      transition('open <=> closed', [
+      transition('right <=> wrong', [
         animate('0.5s')
       ]),
-      transition('* => open', [
+      transition('* => right', [
         animate('1s',
           style({ opacity: '*' }),
         ),
@@ -46,7 +48,7 @@ import { trigger, transition, state, animate, style, AnimationEvent  } from '@an
 export class DashboardComponent implements OnInit {
 
   // Animations
-  isOpen = true;
+  isRight = undefined;
 
   words: Word[] = [];
   chosenWord: Word;
@@ -59,14 +61,30 @@ export class DashboardComponent implements OnInit {
 
   getWords(): void {
     this.wordService.getWords().subscribe(words => {
-      this.words = words.slice(0, 3);
+      this.words = this.shuffle(words.slice(0, 3));
+      // Shuffle elements
+
       this.chooseWord();
     });
   }
 
-  // Animations
-  toggle() {
-    this.isOpen = !this.isOpen;
+  shuffle(array): Word[] {
+    let currentIndex = array.length;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      const temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
   }
 
   // The answer
@@ -82,7 +100,10 @@ export class DashboardComponent implements OnInit {
     }
     console.log('Clicked on: ' + word.name);
     if (this.chosenWord.id === word.id) {
+      this.isRight = true;
       console.log('Right answer!');
+    } else {
+      this.isRight = false;
     }
   }
 }

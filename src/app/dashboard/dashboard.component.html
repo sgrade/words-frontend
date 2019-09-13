@@ -1,8 +1,9 @@
 <div class="grid grid-pad">
     <div *ngFor="let word of words" 
-        class="col-1-3" 
+        class="col-1-3"    
         (click)="checkWord(word)">
-        <img class=" module word" src="../../assets/images/{{word.imageurl}}" alt="{{word.name}}">
+        <img class="module" [@rightWrong]="isRight ? 'right' : 'wrong'"
+            src="../../assets/images/{{word.imageurl}}" alt="{{word.name}}">
     </div>
 </div>
 <app-word-search></app-word-search>
