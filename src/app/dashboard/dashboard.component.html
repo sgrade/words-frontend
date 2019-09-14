@@ -3,7 +3,8 @@
         class="col-1-3"
         *ngFor="let word of words"
         [word]="word"
-        [rightAnswer]="chosenWord">
+        [rightAnswer]="chosenWord"
+        (answered)="onAnswered($event)">
     </app-word-module>
 </div>
 
