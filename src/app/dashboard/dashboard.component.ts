@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   private _words: Word[];
   chosenWord: Word;
   attemptedToAnswer = false;
-  private _asweredRight: boolean;
+  private _answeredRight: boolean;
 
   constructor(private wordService: WordService) { }
 
@@ -24,9 +24,7 @@ export class DashboardComponent implements OnInit {
   getWords(): void {
     this.wordService.getWords().subscribe(words => {
       this.words = this.shuffle(words.slice(0, 3));
-      if (!this.attemptedToAnswer) {
-        this.chooseWord();
-      }
+      this.chooseWord();
       console.log('Please find: ' + this.chosenWord.name);
     });
   }
@@ -55,7 +53,7 @@ export class DashboardComponent implements OnInit {
     if (!this.attemptedToAnswer) {
       this._words = this.words;
     } else {
-      if (!this._asweredRight) {
+      if (!this._answeredRight) {
         console.log('Answered wrong. Try again.');
       } else {
         console.log('Answered right!');
@@ -67,10 +65,11 @@ export class DashboardComponent implements OnInit {
           console.log('All words have been learnt. Starting with new words.');
           // !!! REPLACE BELOW WITH PROPER REQUEST FOR NEW WORDS !!!
           this._words = this.words;
+          this.attemptedToAnswer = false;
         }
       }
     }
-    if (!this.attemptedToAnswer || this._asweredRight) {
+    if (!this.attemptedToAnswer || this._answeredRight) {
       console.log('Words to learn: ' + this._words.length);
       this.chosenWord = this._words[Math.floor(Math.random() * this._words.length)];
     }
@@ -79,7 +78,9 @@ export class DashboardComponent implements OnInit {
   onAnswered(answeredRight: boolean) {
     this.attemptedToAnswer = true;
     if (answeredRight) {
-      this._asweredRight = true;
+      this._answeredRight = true;
+    } else {
+      this._answeredRight = false;
     }
     this.ngOnInit();
   }

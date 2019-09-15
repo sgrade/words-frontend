@@ -48,15 +48,13 @@ export class WordModuleComponent implements OnInit {
 
   // Check if we clicked on the answer
   checkAnswer(word: Word): void {
-    console.log('Right answer: ' + this.rightAnswer.name);
+    console.log('Chosen answer: ' + this.word.name);
     if (this.rightAnswer.id === this.word.id) {
       this.animationState = 'right';
       this.answeredRight = true;
-      console.log('Chosen answer: ' + this.word.name);
     } else {
       this.animationState = 'wrong';
       this.answeredRight = false;
-      console.log('Chosen answer: ' + this.word.name);
     }
     this.answered.emit(this.answeredRight);
   }
