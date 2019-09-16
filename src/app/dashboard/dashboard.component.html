@@ -4,7 +4,8 @@
         *ngFor="let word of words"
         [word]="word"
         [rightAnswer]="chosenWord"
-        (answered)="onAnswered($event)">
+        (answered)="onAnswered($event)"
+        (answerAnimationDone)="onChildAnimationDone($event)">
     </app-word-module>
 </div>
 

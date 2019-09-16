@@ -18,14 +18,16 @@ import { Word } from '../word';
       state('wrong', style({
       })),
       transition('* => default', [
+        style({ opacity: 0.5, backgroundColor: '*' }),
+        animate('1s', style({ opacity: 1 }))
       ]),
       transition('* => right', [
-        style({ opacity: 1, backgroundColor: 'green'}),
-        animate('1s', style({opacity: 0}))
+        style({ opacity: 0.5, backgroundColor: 'green'}),
+        animate('2s', style({opacity: 1}))
       ]),
       transition('* => wrong', [
-        style({ opacity: 1, backgroundColor: 'red' }),
-        animate('1s', style({ opacity: 0 }))
+        style({ opacity: 0.5, backgroundColor: 'red' }),
+        animate('2s', style({ opacity: 1 }))
       ]),
     ]),
   ]
@@ -35,8 +37,10 @@ export class WordModuleComponent implements OnInit {
   @Input() word: Word;
   @Input() rightAnswer: Word;
   @Output() answered = new EventEmitter<boolean>();
+  @Output() answerAnimationDone = new EventEmitter<boolean>();
 
   answeredRight: boolean;
+  animationDone: boolean;
 
   // Animations
   animationState = 'default';
@@ -59,4 +63,10 @@ export class WordModuleComponent implements OnInit {
     this.answered.emit(this.answeredRight);
   }
 
+  onAnswerAnimationDone(event: AnimationEvent) {
+    this.animationDone = true;
+    if (event.toState !== 'default') {
+      this.answerAnimationDone.emit(this.animationDone);
+    }
+  }
 }

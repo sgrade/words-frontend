@@ -3,4 +3,4 @@
     alt="{{word.name}}"
     (click)="checkAnswer(word)"
     [@rightWrong]="animationState"
-    (@rightWrong.done)="animationState = 'default'">
+    (@rightWrong.done)="onAnswerAnimationDone($event)">

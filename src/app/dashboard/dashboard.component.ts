@@ -10,10 +10,10 @@ import { WordService } from '../word.service';
 export class DashboardComponent implements OnInit {
 
   words: Word[] = [];
-  private _words: Word[];
+  private privateWords: Word[];
   chosenWord: Word;
   attemptedToAnswer = false;
-  private _answeredRight: boolean;
+  private privateAnsweredRight: boolean;
 
   constructor(private wordService: WordService) { }
 
@@ -51,38 +51,42 @@ export class DashboardComponent implements OnInit {
   // The answer
   chooseWord(): void {
     if (!this.attemptedToAnswer) {
-      this._words = this.words;
+      this.privateWords = this.words;
     } else {
-      if (!this._answeredRight) {
+      if (!this.privateAnsweredRight) {
         console.log('Answered wrong. Try again.');
       } else {
         console.log('Answered right!');
-        if (this._words.length > 1) {
+        if (this.privateWords.length > 1) {
           console.log('Removing ' + this.chosenWord.name.toLowerCase() +
             ' from the list of words to learn');
-          this._words = this._words.filter(obj => obj !== this.chosenWord);
+          this.privateWords = this.privateWords.filter(obj => obj !== this.chosenWord);
         } else {
           console.log('All words have been learnt. Starting with new words.');
           // !!! REPLACE BELOW WITH PROPER REQUEST FOR NEW WORDS !!!
-          this._words = this.words;
+          this.privateWords = this.words;
           this.attemptedToAnswer = false;
         }
       }
     }
-    if (!this.attemptedToAnswer || this._answeredRight) {
-      console.log('Words to learn: ' + this._words.length);
-      this.chosenWord = this._words[Math.floor(Math.random() * this._words.length)];
+    if (!this.attemptedToAnswer || this.privateAnsweredRight) {
+      console.log('Words to learn: ' + this.privateWords.length);
+      this.chosenWord = this.privateWords[Math.floor(Math.random() * this.privateWords.length)];
     }
   }
 
   onAnswered(answeredRight: boolean) {
     this.attemptedToAnswer = true;
     if (answeredRight) {
-      this._answeredRight = true;
+      this.privateAnsweredRight = true;
     } else {
-      this._answeredRight = false;
+      this.privateAnsweredRight = false;
     }
-    this.ngOnInit();
+    /*this.ngOnInit();*/
   }
 
+  onChildAnimationDone(animationDone: boolean) {
+    console.log('Parent triggered on child animation event');
+    this.ngOnInit();
+  }
 }
