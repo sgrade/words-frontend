@@ -10,7 +10,8 @@ import { MessageService } from './message.service';
 @Injectable({ providedIn: 'root' })
 export class WordService {
 
-  private wordsUrl = 'api/words'; // URL to web
+  private wordsUrl = 'http://localhost:5000/words'; // URL to words we are to learn
+  private learnedWordsUrl = 'http://localhost:5000/learned'; // URL to words we learned
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,7 +30,14 @@ export class WordService {
     );
   }
 
-  /** GET hero by id. Return `undefined` when id not found */
+  /** PUT: Send the word, which we have just learnt, to the server */
+  putLearnedWord(word: Word): Observable<any> {
+    return this.http.put(this.learnedWordsUrl, word, this.httpOptions).pipe(
+      catchError(this.handleError<any>('learnWord'))
+    );
+  }
+
+  /** GET word by id. Return `undefined` when id not found */
   getWordNo404<Data>(id: number): Observable<Word> {
     const url = `${this.wordsUrl}/?id=${id}`;
     return this.http.get<Word[]>(url)
@@ -63,6 +71,9 @@ export class WordService {
       catchError(this.handleError<Word[]>('searchWords', []))
     );
   }
+
+  /* !!! TODO: I modified the server logic, so below methods do not work anymore !!!
+    Need to invent relevant logic */
 
   /** PUT: update the word on the server */
   updateWord(word: Word): Observable<any> {
