@@ -22,11 +22,15 @@ export class DashboardComponent implements OnInit {
   }
 
   getWords(): void {
-    this.wordService.getWords().subscribe(words => {
-      this.words = this.shuffle(words);
+    if (!this.attemptedToAnswer) {
+      this.wordService.getWords().subscribe(words => {
+        this.words = this.shuffle(words);
+        this.chooseWord();
+      });
+    } else {
+      this.shuffle(this.words);
       this.chooseWord();
-      console.log('Please find: ' + this.chosenWord.name);
-    });
+    }
   }
 
   shuffle(array): Word[] {
@@ -57,6 +61,7 @@ export class DashboardComponent implements OnInit {
       console.log('Words to learn: ' + this.privateWords.length);
       this.chosenWord = this.privateWords[Math.floor(Math.random() * this.privateWords.length)];
     }
+    console.log('Please find: ' + this.chosenWord.name);
   }
 
   // FINALIZE
@@ -72,7 +77,7 @@ export class DashboardComponent implements OnInit {
       console.log('Answered right!');
       this.privateAnsweredRight = true;
 
-      // this.putLearnedWord(this.chosenWord);
+      this.putLearnedWord(this.chosenWord);
 
       if (this.privateWords.length > 1) {
         console.log('Removing ' + this.chosenWord.name.toLowerCase() +
