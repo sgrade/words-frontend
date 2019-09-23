@@ -1,14 +1,16 @@
 .module {
   padding: 20px;
   text-align: center;
-  color: #eee;
+  color: #4e6572;
   /* max-height: 120px;*/
+  max-height: 92%;
   min-width: 120px;
-  background-color: #4e6572;
+  max-width: 90%;
+  background-color: #eee;
   border-radius: 2px;
 }
 .module:hover {
-  background-color: #eee;
+  background-color: #cfd8dc;
   cursor: pointer;
   color: #607d8b;
 }

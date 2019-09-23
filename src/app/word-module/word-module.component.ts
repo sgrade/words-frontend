@@ -18,8 +18,7 @@ import { Word } from '../word';
       state('wrong', style({
       })),
       transition('* => default', [
-        style({ opacity: 0.5, backgroundColor: '*' }),
-        animate('1s', style({ opacity: 1 }))
+        style({ opacity: 0.5, backgroundColor: '*' })
       ]),
       transition('* => right', [
         style({ opacity: 0.5, backgroundColor: 'green'}),
@@ -48,6 +47,7 @@ export class WordModuleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.animationState);
   }
 
   // Check if we clicked on the answer
@@ -68,5 +68,6 @@ export class WordModuleComponent implements OnInit {
     if (event.toState !== 'default') {
       this.answerAnimationDone.emit(this.animationDone);
     }
+    this.animationState = 'default';
   }
 }
