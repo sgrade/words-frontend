@@ -47,7 +47,7 @@ export class WordModuleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.animationState);
+    // console.log(this.animationState);
   }
 
   // Check if we clicked on the answer
