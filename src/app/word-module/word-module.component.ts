@@ -22,11 +22,11 @@ import { Word } from '../word';
       ]),
       transition('* => right', [
         style({ opacity: 0.5, backgroundColor: 'green'}),
-        animate('2s', style({opacity: 1}))
+        animate('1s', style({opacity: 1}))
       ]),
       transition('* => wrong', [
         style({ opacity: 0.5, backgroundColor: 'red' }),
-        animate('2s', style({ opacity: 1 }))
+        animate('1s', style({ opacity: 1 }))
       ]),
     ]),
   ]
