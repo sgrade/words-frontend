@@ -1,7 +1,7 @@
-<h2>My Words</h2>
+<p></p>
 <app-word-search></app-word-search>
 <div>
-    <label>Word name:
+    <label>Word Name:
         <input #wordName />
     </label>
     <!-- (click) passes input value to add() and then clears the input -->
@@ -9,6 +9,7 @@
         add
     </button>
 </div>
+<!--
 <ul class="words">
     <li *ngFor="let word of words">
         <a routerLink="/detail/{{word.id}}">
@@ -18,4 +19,5 @@
             (click)="delete(word)">x</button>
     </li>
 </ul>
+-->
 <app-messages></app-messages>

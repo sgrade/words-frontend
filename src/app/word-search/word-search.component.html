@@ -1,8 +1,7 @@
 <div id="search-component">
-    <h4><label for="search-box">Word Search</label></h4>
-
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
+    <label for="search-box">Word Search: 
+        <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    </label>
     <ul class="search-result">
         <li *ngFor="let word of words$ | async">
             <a routerLink="/detail/{{word.id}}">

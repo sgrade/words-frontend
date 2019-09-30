@@ -12,7 +12,7 @@ export class WordService {
 
   private wordsUrl = 'http://localhost:5000/words'; // URL to words we are to learn
   private learnedWordsUrl = 'http://localhost:5000/learned'; // URL to words we learned
-
+  
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -66,7 +66,8 @@ export class WordService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Word[]>(`${this.wordsUrl}/?name=${term}`).pipe(
+    // return this.http.get<Word[]>(`${this.wordsUrl}/?name=${term}`).pipe(
+    return this.http.get<Word[]>(`${this.wordsUrl}/search/${term}`).pipe(
       tap(_ => this.log(`found words matching "${term}"`)),
       catchError(this.handleError<Word[]>('searchWords', []))
     );

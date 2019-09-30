@@ -8,8 +8,13 @@
         </label>
     </div>
     <div>
+        <label>image_URL:
+            <input [(ngModel)]="word.imageurl" placeholder="url" />
+        </label>
+    </div>
+    <div>
         <p>image:</p>
-        <img src="../../assets/images/{{word.imageurl}}" alt="{{word.name}}">
+        <img src="../../assets/images/{{word.imageurl}}" alt="{{word.imageurl}}">
     </div>
     <button (click)="goBack()">go back</button>
     <button (click)="save()">save</button>
