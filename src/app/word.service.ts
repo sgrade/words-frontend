@@ -10,9 +10,10 @@ import { MessageService } from './message.service';
 @Injectable({ providedIn: 'root' })
 export class WordService {
 
-  private wordsUrl = 'http://localhost:5000/words'; // URL to words we are to learn
-  private learnedWordsUrl = 'http://localhost:5000/learned'; // URL to words we learned
-  
+  // private wordsUrl = 'http://localhost:5000/words'; // URL to words we are to learn
+  // private learnedWordsUrl = 'http://localhost:5000/learned'; // URL to words we learned
+  private backendUrl = 'http://localhost:5000';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -23,7 +24,7 @@ export class WordService {
 
   getWords(): Observable<Word[]> {
     // TODO: send the message _after_ fetching the words
-    return this.http.get<Word[]>(this.wordsUrl)
+    return this.http.get<Word[]>(`${this.backendUrl}/words`)
       .pipe(
         tap(_ => this.log('fetched words')),
         catchError(this.handleError<Word[]>('getWords', []))
@@ -32,14 +33,14 @@ export class WordService {
 
   /** PUT: Send the word, which we have just learnt, to the server */
   putLearnedWord(word: Word): Observable<any> {
-    return this.http.put(this.learnedWordsUrl, word, this.httpOptions).pipe(
+    return this.http.put(`${this.backendUrl}/learned`, word, this.httpOptions).pipe(
       catchError(this.handleError<any>('learnWord'))
     );
   }
 
   /** GET word by id. Return `undefined` when id not found */
   getWordNo404<Data>(id: number): Observable<Word> {
-    const url = `${this.wordsUrl}/?id=${id}`;
+    const url = `${this.backendUrl}/words/?id=${id}`;
     return this.http.get<Word[]>(url)
       .pipe(
         map(words => words[0]), // returns a {0|1} element array
@@ -53,7 +54,7 @@ export class WordService {
 
   /** GET word by id. Will 404 if id not found */
   getWord(id: number): Observable<Word> {
-    const url = `${this.wordsUrl}/${id}`;
+    const url = `${this.backendUrl}/words/${id}`;
     return this.http.get<Word>(url).pipe(
       tap(_ => this.log(`fetched word id=${id}`)),
       catchError(this.handleError<Word>(`getWord id=${id}`))
@@ -67,7 +68,7 @@ export class WordService {
       return of([]);
     }
     // return this.http.get<Word[]>(`${this.wordsUrl}/?name=${term}`).pipe(
-    return this.http.get<Word[]>(`${this.wordsUrl}/search/${term}`).pipe(
+    return this.http.get<Word[]>(`${this.backendUrl}/words/search/${term}`).pipe(
       tap(_ => this.log(`found words matching "${term}"`)),
       catchError(this.handleError<Word[]>('searchWords', []))
     );
@@ -78,7 +79,7 @@ export class WordService {
 
   /** PUT: update the word on the server */
   updateWord(word: Word): Observable<any> {
-    return this.http.put(this.wordsUrl, word, this.httpOptions).pipe(
+    return this.http.put(`${this.backendUrl}/words`, word, this.httpOptions).pipe(
       tap(_ => this.log(`updated word id=${word.id}`)),
       catchError(this.handleError<any>('updateWord'))
     );
@@ -86,7 +87,7 @@ export class WordService {
 
   /** POST: add a new word to the server */
   addWord(word: Word): Observable<Word> {
-    return this.http.post<Word>(this.wordsUrl, word, this.httpOptions).pipe(
+    return this.http.post<Word>(`${this.backendUrl}/words`, word, this.httpOptions).pipe(
       tap((newWord: Word) => this.log(`added word w/ id=${newWord.id}`)),
       catchError(this.handleError<Word>('addWord'))
     );
@@ -95,7 +96,7 @@ export class WordService {
   /** DELETE: delete the word from the server */
   deleteWord(word: Word | number): Observable<Word> {
     const id = typeof word === 'number' ? word : word.id;
-    const url = `${this.wordsUrl}/${id}`;
+    const url = `${this.backendUrl}/words/${id}`;
 
     return this.http.delete<Word>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted word id=${id}`)),
