@@ -12,7 +12,8 @@ export class WordService {
 
   // private wordsUrl = 'http://localhost:5000/words'; // URL to words we are to learn
   // private learnedWordsUrl = 'http://localhost:5000/learned'; // URL to words we learned
-  private backendUrl = 'http://localhost:5000';
+  // private backendUrl = 'http://localhost:5000';
+  private backendUrl = 'https://words-backend-romank.appspot.com';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
