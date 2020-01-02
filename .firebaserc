@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "words-68f00"
+  },
+  "targets": {
+    "words-68f00": {
+      "hosting": {
+        "words-frontend": [
+          "words-68f00"
+        ]
+      }
+    }
   }
 }
