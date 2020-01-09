@@ -1,5 +1,5 @@
 export class Word {
-    id: number;
+    id: string;
     name: string;
     imageurl: string;
 }
