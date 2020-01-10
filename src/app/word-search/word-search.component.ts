@@ -34,7 +34,7 @@ export class WordSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.wordService.searchWords(term)),
+      switchMap((term: string) => this.wordService.findByName(term)),
     );
   }
 }
