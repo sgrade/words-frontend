@@ -55,7 +55,7 @@ export class WordService {
 
   /** GET word by id. Will 404 if id not found */
   getWord(id: number): Observable<Word> {
-    const url = `${this.backendUrl}/words/${id}`;
+    const url = `${this.backendUrl}/word/${id}`;
     return this.http.get<Word>(url).pipe(
       tap(_ => this.log(`fetched word id=${id}`)),
       catchError(this.handleError<Word>(`getWord id=${id}`))
