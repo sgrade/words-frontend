@@ -24,7 +24,8 @@ export class WordDetailComponent implements OnInit {
   }
 
   getWord(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log('Requesting word with ID: ' + id);
     this.wordService.getWord(id).subscribe(word => this.word = word);
   }
 

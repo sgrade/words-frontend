@@ -10,9 +10,6 @@ import { MessageService } from './message.service';
 @Injectable({ providedIn: 'root' })
 export class WordService {
 
-  // private wordsUrl = 'http://localhost:5000/words'; // URL to words we are to learn
-  // private learnedWordsUrl = 'http://localhost:5000/learned'; // URL to words we learned
-  // private backendUrl = 'http://localhost:5000';
   private backendUrl = 'https://words-backend-romank.appspot.com';
 
   httpOptions = {
@@ -40,7 +37,7 @@ export class WordService {
   }
 
   /** GET word by id. Return `undefined` when id not found */
-  getWordNo404<Data>(id: number): Observable<Word> {
+  getWordNo404<Data>(id: string): Observable<Word> {
     const url = `${this.backendUrl}/words/?id=${id}`;
     return this.http.get<Word[]>(url)
       .pipe(
@@ -54,7 +51,7 @@ export class WordService {
   }
 
   /** GET word by id. Will 404 if id not found */
-  getWord(id: number): Observable<Word> {
+  getWord(id: string): Observable<Word> {
     const url = `${this.backendUrl}/word/${id}`;
     return this.http.get<Word>(url).pipe(
       tap(_ => this.log(`fetched word id=${id}`)),
