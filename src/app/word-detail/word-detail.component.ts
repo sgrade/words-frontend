@@ -34,6 +34,7 @@ export class WordDetailComponent implements OnInit {
   }
 
   save(): void {
+    console.log('Updating word: ' + this.word.name);
     this.wordService.updateWord(this.word).subscribe(() => this.goBack());
   }
 

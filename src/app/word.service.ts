@@ -77,7 +77,8 @@ export class WordService {
 
   /** PUT: update the word on the server */
   updateWord(word: Word): Observable<any> {
-    return this.http.put(`${this.backendUrl}/words`, word, this.httpOptions).pipe(
+    // return this.http.put(`${this.backendUrl}/words`, word, this.httpOptions).pipe(
+    return this.http.put(`${this.backendUrl}/word`, word, this.httpOptions).pipe(
       tap(_ => this.log(`updated word id=${word.id}`)),
       catchError(this.handleError<any>('updateWord'))
     );
@@ -85,7 +86,8 @@ export class WordService {
 
   /** POST: add a new word to the server */
   addWord(word: Word): Observable<Word> {
-    return this.http.post<Word>(`${this.backendUrl}/words`, word, this.httpOptions).pipe(
+    // return this.http.post<Word>(`${this.backendUrl}/words`, word, this.httpOptions).pipe(
+    return this.http.post<Word>(`${this.backendUrl}/word`, word, this.httpOptions).pipe(
       tap((newWord: Word) => this.log(`added word w/ id=${newWord.id}`)),
       catchError(this.handleError<Word>('addWord'))
     );
