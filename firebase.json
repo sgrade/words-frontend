@@ -1,15 +1,6 @@
 {
   "hosting": [
     {
-      "public": "dist/words-frontend",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**",
-        "firebase-debug.log"
-      ]
-    },
-    {
       "target": "words-frontend",
       "public": "dist/words-frontend",
       "ignore": [
