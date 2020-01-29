@@ -16,6 +16,8 @@ import { WordSearchComponent } from './word-search/word-search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WordModuleComponent } from './word-module/word-module.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { WordModuleComponent } from './word-module/word-module.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgbModule,
   ],
   declarations: [
     AppComponent,
