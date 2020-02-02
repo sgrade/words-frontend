@@ -1,12 +1,13 @@
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-  <li [ngbNavItem]="1">
-    <a ngbNavLink routerLink="/dashboard">Play</a>
+<ul ngbNav [(activeId)]="activeMenuTab" class="nav-tabs">
+  <li [ngbNavItem]="dashboard">
+	  <a ngbNavLink routerLink="/dashboard">{{ activeMenuTab }} Play</a>
   </li>
-  <li [ngbNavItem]="2">
+  <li [ngbNavItem]="words">
     <a ngbNavLink routerLink="/words">Manage words</a>
   </li>
+  <li [ngbNavItem]="auth">
+    <a ngbNavLink routerLink="/auth">Login</a>
+  </li>
 </ul>
-
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
 
 <router-outlet></router-outlet>

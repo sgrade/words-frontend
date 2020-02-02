@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WordModuleComponent } from './word-module/word-module.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAuthFirebaseUIModule } from '@firebaseui/ng-bootstrap';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   imports: [
@@ -26,6 +28,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     BrowserAnimationsModule,
     NgbModule,
+	  NgbAuthFirebaseUIModule.forRoot({
+		  apiKey: 'AIzaSyD6shTFtvllk7xiOuRe4uqFG6jNLJRTCdI',
+		  projectId: 'words-68f00'
+	  }),
   ],
   declarations: [
     AppComponent,
@@ -34,8 +40,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     WordDetailComponent,
     MessagesComponent,
     WordSearchComponent,
-    WordModuleComponent
+    WordModuleComponent,
+    AuthComponent
   ],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [AuthComponent],
 })
 export class AppModule { }
