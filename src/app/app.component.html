@@ -1,13 +1,9 @@
+<!--  navs bound to current route fragments -->
 <ul ngbNav [(activeId)]="activeMenuTab" class="nav-tabs">
-  <li [ngbNavItem]="dashboard">
-	  <a ngbNavLink routerLink="/dashboard">{{ activeMenuTab }} Play</a>
-  </li>
-  <li [ngbNavItem]="words">
-    <a ngbNavLink routerLink="/words">Manage words</a>
-  </li>
-  <li [ngbNavItem]="auth">
-    <a ngbNavLink routerLink="/auth">Login</a>
+  <li [ngbNavItem]="link.fragment" *ngFor="let link of links">
+    <a ngbNavLink routerLink="/{{ link.fragment }}" routerLinkActive="active">{{ link.title }} {{ activedMenuTab }}</a>
   </li>
 </ul>
 
+<!-- and an actual outlet elsewhere -->
 <router-outlet></router-outlet>
