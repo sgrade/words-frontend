@@ -1,12 +1,5 @@
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-  <li [ngbNavItem]="1">
-    <a ngbNavLink routerLink="/dashboard">Play</a>
-  </li>
-  <li [ngbNavItem]="2">
-    <a ngbNavLink routerLink="/words">Manage words</a>
-  </li>
-</ul>
-
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
-
+<nav>
+    <a routerLink="/dashboard">Play</a>
+    <a routerLink="/words">Manage words</a>
+</nav>
 <router-outlet></router-outlet>
