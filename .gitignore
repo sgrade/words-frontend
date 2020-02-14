@@ -48,3 +48,8 @@ Thumbs.db
 # ## Firebase
 .firebase/*.cache
 .firebaserc
+
+# The content is considered public...
+# However, it is not recommended to include in source control, 
+# because other users should use their own backends
+firebase-conig.ts

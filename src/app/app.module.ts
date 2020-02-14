@@ -26,6 +26,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { NgxAuthFirebaseuiComponent } from './ngx-auth-firebaseui/ngx-auth-firebaseui.component';
+
+import { firebaseConfig } from '../../firebase-config';
 
 @NgModule({
   imports: [
@@ -43,6 +47,7 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    NgxAuthFirebaseUIModule.forRoot(firebaseConfig),
   ],
   declarations: [
     AppComponent,
@@ -53,7 +58,8 @@ import { MatListModule } from '@angular/material/list';
     WordSearchComponent,
     WordModuleComponent,
     MatDashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    NgxAuthFirebaseuiComponent
   ],
   bootstrap: [AppComponent]
 })
