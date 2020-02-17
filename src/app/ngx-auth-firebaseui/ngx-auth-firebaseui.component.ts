@@ -13,10 +13,12 @@ export class NgxAuthFirebaseuiComponent implements OnInit {
     }
   
     printUser(event) {
+        console.log('Executing printUser');
         console.log(event);
     }
 
     printError(event) {
+        console.log('Executing printError');
         console.error(event);
     }
 }
