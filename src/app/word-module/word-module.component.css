@@ -21,7 +21,7 @@ img {
 }
 */
 
-img {
+mat-card img {
     /* https://www.w3schools.com/howto/howto_css_image_center.asp */
     /*
     display: block;
@@ -30,16 +30,24 @@ img {
     */
 
     /* https://www.w3schools.com/howto/howto_css_image_responsive.asp */
+    /*
     width: 100%;
     height: auto;
+    */
 
     /* https://www.w3schools.com/howto/howto_css_center-vertical.asp */
+    
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    
+
+    object-fit: contain; /*this makes the image in src fit to the size specified below*/
+    width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+    height: 100%;
 }
 
 .dashboard-card {
