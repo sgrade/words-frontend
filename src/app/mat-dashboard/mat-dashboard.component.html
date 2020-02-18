@@ -1,3 +1,4 @@
+<!--
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-grid-list cols="2" rowHeight="350px">
@@ -21,4 +22,22 @@
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
+</div>
+-->
+
+
+<div class="grid-container">
+    <h1 class="mat-h1" style="text-align:center" *ngIf="chosenWord">{{ chosenWord.name | uppercase }}</h1>
+    
+    <mat-grid-list cols="3">
+        <mat-grid-tile *ngFor="let word of words" [colspan]="1" [rowspan]="1">
+                <app-word-module
+                    [word]="word"
+                    [rightAnswer]="chosenWord"
+                    (answered)="onAnswered($event)"
+                    (answerAnimationDone)="onChildAnimationDone($event)">
+                </app-word-module>
+        </mat-grid-tile>
+    </mat-grid-list>
+
 </div>
