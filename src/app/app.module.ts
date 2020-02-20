@@ -47,7 +47,18 @@ import { firebaseConfig } from '../../firebase-config';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    NgxAuthFirebaseUIModule.forRoot(firebaseConfig),
+    NgxAuthFirebaseUIModule.forRoot(
+        firebaseConfig,
+        () => '',
+        {
+            // url for unauthenticated users - to use in combination with canActivate feature on a route
+            authGuardFallbackURL: '/signin',
+            // url for authenticated users - to use in combination with canActivate feature on a route
+            authGuardLoggedInURL: '/dashboard',
+            // Plus protected routes are still protected even though user is connected.
+            guardProtectedRoutesUntilEmailIsVerified: true,
+        }
+        ),
   ],
   declarations: [
     AppComponent,
