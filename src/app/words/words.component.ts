@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Word } from '../word';
 import { WordService } from '../word.service';
 
+import { UserService } from '../user.service';
+
 @Component({
   selector: 'app-words',
   templateUrl: './words.component.html',
@@ -11,10 +13,15 @@ export class WordsComponent implements OnInit {
 
   words: Word[];
 
-  constructor(private wordService: WordService) { }
+  constructor(private wordService: WordService,
+               private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.getWords();
+    
+    // this.userService.getToken();
+    
   }
 
   getWords(): void {
