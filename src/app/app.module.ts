@@ -49,7 +49,7 @@ import { firebaseConfig } from '../../firebase-config';
     MatListModule,
     NgxAuthFirebaseUIModule.forRoot(
         firebaseConfig,
-        () => '',
+        null, // https://github.com/AnthonyNahas/ngx-auth-firebaseui/issues/238
         {
             // url for unauthenticated users - to use in combination with canActivate feature on a route
             authGuardFallbackURL: '/signin',
