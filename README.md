@@ -1,6 +1,14 @@
 # Getting started from a new dev workstation
 
-Install npm
+## Prerequisites
+
+[npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+[Angular CLI](https://angular.io/guide/setup-local)
+
+[Firebase CLI](https://firebase.google.com/docs/cli)
+
+## Installation
 
 Clone this repo
 
@@ -18,6 +26,27 @@ Login to Firebase
 ```
 firebase login --no-localhost
 ```
+
+Create firebase-config.ts in the root directory of the project.  
+
+Login to Firebase -> Choose project -> Project overview -> Project settings -> General -> Web apps -> Firebase SDK snippet -> Config
+
+Copy the Config, prepend it with "export", paste into firebase-config.ts. So it should look like:
+
+```
+export const firebaseConfig = {
+  apiKey: "xxxxx",
+  authDomain: "xxxxx",
+  databaseURL: "xxxxx",
+  projectId: "xxxxx",
+  storageBucket: "xxxxx",
+  messagingSenderId: "xxxxx",
+  appId: "xxxxx",
+  measurementId: "xxxxx"
+};
+
+```
+
 
 Deploy to Firebase hosting
 ```
